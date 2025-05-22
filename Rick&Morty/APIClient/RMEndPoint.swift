@@ -7,7 +7,7 @@
 
 import Foundation
 
-@frozen enum RMEndPoint: String {
+ enum RMEndPoint: String {
     case character //gives raw value RMEndPoint.character = "character"
     case location
     case episode

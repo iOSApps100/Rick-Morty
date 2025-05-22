@@ -15,6 +15,9 @@ final class RMCharaterViewController: UIViewController {
         // systemBackground means we are supporting light & white mode.
         view.backgroundColor = .systemBackground
         title = "Characters"
+        
+        let request = RMRequest(endpoint: .character, queryParameters: [URLQueryItem(name: "name", value: "rick"),URLQueryItem(name: "status", value: "alive")])
+        print(request.url)
     }
 
 
