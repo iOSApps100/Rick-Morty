@@ -9,15 +9,22 @@ import UIKit
 
 final class RMCharaterViewController: UIViewController {
 
+    private let characterListView = CharacterListView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // systemBackground means we are supporting light & white mode.
         view.backgroundColor = .systemBackground
         title = "Characters"
-        
-        let request = RMRequest(endpoint: .character, queryParameters: [URLQueryItem(name: "name", value: "rick"),URLQueryItem(name: "status", value: "alive")])
-        print(request.url)
+        view.addSubview(characterListView)
+        // this will set constraint at what place it will show.
+        NSLayoutConstraint.activate([
+            characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            characterListView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            characterListView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            ])
     }
 
 
