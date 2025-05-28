@@ -17,6 +17,10 @@ final class RMCharaterViewController: UIViewController {
         // systemBackground means we are supporting light & white mode.
         view.backgroundColor = .systemBackground
         title = "Characters"
+        setUpView()
+    }
+
+    private func setUpView() {
         view.addSubview(characterListView)
         // this will set constraint at what place it will show on the view controller.
         NSLayoutConstraint.activate([
@@ -26,6 +30,5 @@ final class RMCharaterViewController: UIViewController {
             characterListView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
             ])
     }
-
 
 }
