@@ -41,6 +41,7 @@ final class CharacterListView: UIView {
         addSubviews(collectionView, spinner)
         spinner.startAnimating()
         viewModel.fetchCharacters()
+        addConstraints()
         setUpCollectionView()
     }
     

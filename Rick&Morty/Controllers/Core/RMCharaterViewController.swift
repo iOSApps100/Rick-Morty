@@ -18,12 +18,12 @@ final class RMCharaterViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = "Characters"
         view.addSubview(characterListView)
-        // this will set constraint at what place it will show.
+        // this will set constraint at what place it will show on the view controller.
         NSLayoutConstraint.activate([
-            characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            characterListView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            characterListView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            characterListView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            characterListView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            characterListView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            characterListView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
             ])
     }
 
