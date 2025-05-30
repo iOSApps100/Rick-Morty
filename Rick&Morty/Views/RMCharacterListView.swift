@@ -8,9 +8,9 @@
 import UIKit
 
 //View that will handles showing list of character, loader etc.
-final class CharacterListView: UIView {
+final class RMCharacterListView: UIView {
 
-    private let viewModel = CharacterListViewViewModel()
+    private let viewModel = RMCharacterListViewViewModel()
     
     //this is called anonymous closure
     private let spinner: UIActivityIndicatorView = {
@@ -31,7 +31,7 @@ final class CharacterListView: UIView {
        collectionView.isHidden = true
         
         collectionView.alpha = 0
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(RMCharacterCollectionViewCell.self, forCellWithReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier)
         return collectionView
     }()
     
