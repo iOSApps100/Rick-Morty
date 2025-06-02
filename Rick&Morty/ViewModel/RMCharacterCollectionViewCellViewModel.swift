@@ -21,7 +21,7 @@ final class RMCharacterCollectionViewCellViewModel {
     
     // we are making computed property bcz we dont want to expose 'characterStatus' type.
     public var characterStatusText: String {
-        return characterStatus.rawValue
+        return "Status: \(characterStatus.text)"
     }
     
     public func fetchImage(completion: @escaping (Result<Data, Error>) -> Void) {

@@ -7,7 +7,25 @@
 
 import UIKit
 
+protocol RMCharacterListViewViewModelDelegate: AnyObject {
+    func didLoadInitialCharacter()
+}
+
 final class RMCharacterListViewViewModel: NSObject {
+    
+    private var cellViewModels: [RMCharacterCollectionViewCellViewModel] = []
+    public weak var delegate: RMCharacterListViewViewModelDelegate? = nil
+    
+    private var characters: [RMCharacter] = [] {
+        
+        didSet {
+            for character in characters {
+                let viewModel = RMCharacterCollectionViewCellViewModel(characterName: character.name, characterStatus: character.status, characterImageURL: URL(string: character.image))
+                cellViewModels.append(viewModel)
+            }
+        }
+    }
+    
     
     func fetchCharacters() {
         
@@ -25,14 +43,14 @@ final class RMCharacterListViewViewModel: NSObject {
 extension RMCharacterListViewViewModel: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return cellViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier, for: indexPath) as? RMCharacterCollectionViewCell else {
             fatalError("Unsupported cell")
         }
-        let viewModel = RMCharacterCollectionViewCellViewModel(characterName: "Albus", characterStatus: .alive, characterImageURL: URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg"))
+        let viewModel = cellViewModels[indexPath.row]
         cell.configure(with: viewModel)
         cell.backgroundColor = .systemPink
         return cell
