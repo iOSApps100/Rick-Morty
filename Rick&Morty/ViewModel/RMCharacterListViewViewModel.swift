@@ -17,6 +17,7 @@ final class RMCharacterListViewViewModel: NSObject {
     
     private var cellViewModels: [RMCharacterCollectionViewCellViewModel] = []
     public weak var delegate: RMCharacterListViewViewModelDelegate? = nil
+    private var isLoadingMoreCharacters = false
     
     private var characters: [RMCharacter] = [] {
         
@@ -48,7 +49,7 @@ final class RMCharacterListViewViewModel: NSObject {
     }
     // Paginate if additional characters are needed.
     public func fetchAdditionalCharacters() {
-        
+        isLoadingMoreCharacters = true
     }
     
     public var shouldShowLoadMoreIndicator: Bool {
@@ -69,7 +70,7 @@ extension RMCharacterListViewViewModel: UICollectionViewDataSource, UICollection
         }
         let viewModel = cellViewModels[indexPath.row]
         cell.configure(with: viewModel)
-        cell.backgroundColor = .systemPink
+       // cell.backgroundColor = .systemPink
         return cell
     }
     
@@ -107,9 +108,17 @@ extension RMCharacterListViewViewModel: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        guard shouldShowLoadMoreIndicator else {
+        guard shouldShowLoadMoreIndicator, !isLoadingMoreCharacters else {
             return
         }
+        let offset = scrollView.contentOffset.y
+        let totalContentHeight = scrollView.contentSize.height
+        let totalScrollViewFixedHeight = scrollView.frame.size.height
         
+        if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+            print("should start fetching more")
+            // this var is preventing this scroll view function runs "n" number of times, we just need to hit request only once.
+            fetchAdditionalCharacters()
+        }
     }
 }
