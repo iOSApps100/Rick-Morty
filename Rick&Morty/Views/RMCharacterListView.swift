@@ -37,6 +37,8 @@ final class RMCharacterListView: UIView {
         
         collectionView.alpha = 0
         collectionView.register(RMCharacterCollectionViewCell.self, forCellWithReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier)
+        // When we scroll till bottom of collection view we need to tell collection view hey you need to show loader now.
+        collectionView.register(RMFooterLoadingCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: RMFooterLoadingCollectionReusableView.identifier)
         return collectionView
     }()
     
