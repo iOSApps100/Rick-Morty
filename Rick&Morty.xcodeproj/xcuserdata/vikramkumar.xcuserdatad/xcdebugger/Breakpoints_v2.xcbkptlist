@@ -14,10 +14,10 @@
             filePath = "Rick&amp;Morty/ViewModel/RMCharacterListViewViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "shouldShowLoadMoreIndicator"
-            landmarkType = "24">
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "RMCharacterListViewViewModel"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
