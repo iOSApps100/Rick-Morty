@@ -64,6 +64,8 @@ final class RMCharacterListViewViewModel: NSObject {
         guard let request = RMRequest(url: url) else {
             isLoadingMoreCharacters = false
             print("Failed to create request")
+            print("Failed to create request")
+            print("Failed to create request")
             return
         }
         RMService.shared.execute(request, excepting: RMGetAllCharactersResponse.self) { [weak self] result in
