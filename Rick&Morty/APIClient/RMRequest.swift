@@ -64,6 +64,7 @@ final class RMRequest {
         self.queryParameters = queryParameters
     }
     //optional convenience initializer which will take URL and convert it into RMRequest for nextURL.
+    // Attempt to create URL to Parse
     convenience init?(url: URL) {
         let string = url.absoluteString
         if !string.contains(Constants.baseURL) {
@@ -73,9 +74,14 @@ final class RMRequest {
         if trimmed.contains("/") {
             let components = trimmed.components(separatedBy: "/")
             if !components.isEmpty {
-                let endpointString = components[0]
+                let endpointString = components[0] // EndPoint
+                var pathComponents: [String] = []// These changes(pathcomponent) for adding 'PathComponent' like '/1' after endpoint.
+                if components.count > 1 {
+                    pathComponents = components
+                    pathComponents.removeFirst()
+                }
                 if let rmEndPoint = RMEndPoint(rawValue: endpointString) {
-                    self.init(endpoint: rmEndPoint)
+                    self.init(endpoint: rmEndPoint, pathComponents: pathComponents)
                     return
                 }
             }
